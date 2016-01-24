@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by leventyildiz on 24/01/16.
  */
 
-
 @Controller
 @RequestMapping("/")
 public class MainController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Hi guys, this is first arduino project!");
-
+        model.addAttribute("message", "This is first arduino project!");
 
         return "index";
     }
