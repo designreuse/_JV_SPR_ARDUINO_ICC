@@ -23,7 +23,8 @@
 
     //base URL
     //ICC.url = "http://localhost:8080";//local
-    ICC.url = "http://172.20.10.2:8080";//Mobile
+    //ICC.url = "http://172.20.10.2:8080";//Mobile
+    ICC.url = "http://192.168.2.233:8080";//local
 
     // request types
     ICC.request = new Object();
