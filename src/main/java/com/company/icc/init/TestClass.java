@@ -32,9 +32,6 @@ public class TestClass {
             InputStreamReader Ir = new InputStreamReader(System.in);
             BufferedReader Br = new BufferedReader(Ir);
             while (c != 3) {
-                System.out.println("LED ON / OFF MENU.");
-                System.out.println("1.LED ON");
-                System.out.println("2.LED OFF");
                 System.out.print("Enter your choice :");
                 c = Integer.parseInt(Br.readLine());
 
