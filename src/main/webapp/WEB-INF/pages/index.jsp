@@ -4,6 +4,7 @@
 <html>
 <meta charset="UTF-8">
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%--bootstrap css--%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -13,6 +14,7 @@
 
     <%--bootstrap js--%>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -22,9 +24,9 @@
     ICC = {};
 
     //base URL
-    //ICC.url = "http://localhost:8080";//local
+    ICC.url = "http://localhost:8080";//local
     //ICC.url = "http://172.20.10.2:8080";//Mobile
-    ICC.url = "http://192.168.2.233:8080";//local
+    //ICC.url = "http://192.168.2.233:8080";//local
 
     // request types
     ICC.request = new Object();
