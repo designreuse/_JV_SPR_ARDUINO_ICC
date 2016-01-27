@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "This is first arduino project!");
+        model.addAttribute("message", "IOT Project");
         return "index";
     }
 }

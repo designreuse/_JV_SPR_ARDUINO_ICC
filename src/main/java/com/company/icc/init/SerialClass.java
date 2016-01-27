@@ -85,7 +85,7 @@ public class SerialClass implements SerialPortEventListener {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine = input.readLine();
-				System.out.println(inputLine);
+				//System.out.println(inputLine);
 			} catch (Exception e) {
 				System.err.println(e.toString());
 			}
@@ -102,7 +102,6 @@ public class SerialClass implements SerialPortEventListener {
 		}
 	}
 
-/*
 	public static void main(String[] args) throws Exception {
 		SerialClass main = new SerialClass();
 		main.initialize();
@@ -122,5 +121,4 @@ public class SerialClass implements SerialPortEventListener {
 		
 		System.out.println("Started");
 	}
-*/
 }

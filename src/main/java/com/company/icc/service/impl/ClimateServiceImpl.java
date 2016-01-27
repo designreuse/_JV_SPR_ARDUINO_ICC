@@ -20,6 +20,7 @@ public class ClimateServiceImpl implements ClimateService {
     public boolean startClimate() {
 
         main.writeData("1");
+        main.close();
         return  true;
 
     }
@@ -28,7 +29,8 @@ public class ClimateServiceImpl implements ClimateService {
     @Override
     public boolean stopClimate() {
 
-        main.writeData("0");
+        main.writeData("2");
+        main.close();
         return  true;
     }
 

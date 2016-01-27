@@ -24,8 +24,8 @@
     ICC = {};
 
     //base URL
-    ICC.url = "http://localhost:8080";//local
-    //ICC.url = "http://172.20.10.2:8080";//Mobile
+    //ICC.url = "http://localhost:8080/_JV_SPR_ARDUINO_ICC";//local
+    ICC.url = "http://172.20.10.2:8080";//Mobile
     //ICC.url = "http://192.168.2.233:8080";//local
 
     // request types
@@ -108,6 +108,9 @@
         var climateStopBtn = $("#climateStopBtn");
         var systemDownBtn = $("#systemDownBtn");
 
+        var readDhtBtn = $("#readDhtBtn");
+        var readMotionBtn = $("#readMotionBtn");
+
         var successContainer = $(".alert-success");
         var errorContainer = $(".alert-error");
         var infoContainer = $(".alert-info");
@@ -154,8 +157,6 @@
         });//click finish
 
 
-
-
         //Stop Climate
         climateStopBtn.on("click", function () {
 
@@ -179,6 +180,72 @@
 
             }, function (err) {
                 errorMsg.html("Klima kapatılamadı!");
+                errorContainer.removeClass("hide");
+            });//API Call finish
+
+        });//click finish
+
+
+        //read DHT
+        readDhtBtn.on("click", function () {
+
+            var postData = {startDate: 123456, endDate: 87654};
+
+            ICC.ajax.post("/dht/read", postData, function (res, status, xhr) {
+
+                hideAllMessages();//hide all messages alerts
+
+                if (res.status == "200" && xhr.status == "200") {
+
+                    successContainer.removeClass("hide");
+                    successMsg.html("DHT değerleri okundu.")
+                    $('.dhtTemperature').html(res.temperature);
+                    $('.dhtHumidity').html(res.humidity);
+
+                } else {
+
+                    errorContainer.removeClass("hide");
+                    errorMsg.html("Bir hata oluştu ve DHT değerleri okunamadı!")
+
+                }
+
+            }, function (err) {
+                errorMsg.html("DHT okunamadı!");
+                errorContainer.removeClass("hide");
+            });//API Call finish
+
+        });//click finish
+
+
+        //read PIR
+        readMotionBtn.on("click", function () {
+
+            var postData = {startDate: 123456, endDate: 87654};
+
+            ICC.ajax.post("/motion/read", postData, function (res, status, xhr) {
+
+                hideAllMessages();//hide all messages alerts
+
+                if (res.status == "200" && xhr.status == "200") {
+
+                    successContainer.removeClass("hide");
+                    successMsg.html("Hareket değerleri okundu.")
+
+                    if (res.motionData == 1) {
+                        $('.motionStatus').html("Ortamda Hareket Var.");
+                    } else {
+                        $('.motionStatus').html("Ortamda Hareket Algılanamadı.");
+                    }
+
+                } else {
+
+                    errorContainer.removeClass("hide");
+                    errorMsg.html("Bir hata oluştu ve Hareket değerleri okunamadı!")
+
+                }
+
+            }, function (err) {
+                errorMsg.html("Hareket okunamadı!");
                 errorContainer.removeClass("hide");
             });//API Call finish
 
@@ -237,7 +304,37 @@
             </div>
             <div id="collapse2" class="panel-collapse collapse">
                 <div class="panel-body">
-                    Sıcaklıkk nem ayarları
+
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="container">
+                                    <h5>Sıcaklık : <span class="label label-warning dhtTemperature"> 0.0 </span></h5>
+                                    <h5>Nem : <span class="label label-primary dhtHumidity">0.0  </span></h5>
+                                </div>
+
+                                <div class="container">
+                                    <button type="button" class="btn btn-primary" id="readDhtBtn">Sıcaklığı Oku</button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="container">
+                                    <h5>Durum : <span class="label label-warning motionStatus"> Hareket Yok! </span>
+                                    </h5>
+                                </div>
+
+                                <div class="container">
+                                    <button type="button" class="btn btn-primary" id="readMotionBtn">Hareket Durumuna
+                                        Bak
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -253,7 +350,7 @@
                     <div class="container">
                         <button type="button" class="btn btn-primary" id="climateStartBtn">Klimayi Ac</button>
                         <button type="button" class="btn btn-warning" id="climateStopBtn">Klimayi Kapat</button>
-                        <button type="button" class="btn btn-danger" id="systemDownBtn">Sistemi Kapat</button>
+                        <%--<button type="button" class="btn btn-danger" id="systemDownBtn">Sistemi Kapat</button>--%>
                     </div>
 
                 </div>
