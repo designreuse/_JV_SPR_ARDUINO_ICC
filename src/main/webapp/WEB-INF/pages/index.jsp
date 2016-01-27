@@ -153,6 +153,38 @@
 
         });//click finish
 
+
+
+
+        //Stop Climate
+        climateStopBtn.on("click", function () {
+
+            var postData = {startDate: 123456, endDate: 87654};
+
+            ICC.ajax.post("/climate/stop", postData, function (res, status, xhr) {
+
+                hideAllMessages();//hide all messages alerts
+
+                if (res.status == "200" && xhr.status == "200") {
+
+                    successContainer.removeClass("hide");
+                    successMsg.html("Klima Kapatıldı.")
+
+                } else {
+
+                    errorContainer.removeClass("hide");
+                    errorMsg.html("Bir hata oluştu ve klima kapatılamadı!")
+
+                }
+
+            }, function (err) {
+                errorMsg.html("Klima kapatılamadı!");
+                errorContainer.removeClass("hide");
+            });//API Call finish
+
+        });//click finish
+
+
     });
 
 </script>

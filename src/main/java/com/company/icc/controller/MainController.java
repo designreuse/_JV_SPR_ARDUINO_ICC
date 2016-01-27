@@ -15,7 +15,6 @@ public class MainController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "This is first arduino project!");
-
         return "index";
     }
 }
